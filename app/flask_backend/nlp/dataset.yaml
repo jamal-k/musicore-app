@@ -1,0 +1,21 @@
+# waiting_for_music intent
+---
+type: intent
+name: waiting_for_music
+utterances:
+- can't wait for music
+- i cant wait for the music
+
+# announcing_event_with_music intent
+---
+type: intent
+name: announcing_event_with_music
+utterances:
+- make sure you come to this club for music
+- artist with playing music here live
+- live music played here
+- there will be music here
+- there will be tunes and music
+- lots of music and tunes 
+- get ready for music
+- acclaimed artists will play music

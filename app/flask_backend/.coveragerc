@@ -1,0 +1,7 @@
+[run]
+omit =
+    */site-packages/*
+    */dist-packages/*
+
+[report]
+ignore_errors = True

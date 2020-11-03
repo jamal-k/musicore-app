@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Install Docker on Linux
+if [ -x "$(command -v docker)" ]; then
+    echo 'Docker Installed'
+else
+    sudo apt-get update
+    sudo apt install docker.io
+fi
+
+# Install Docker Compose on Linux
+if [ -x "$(command -v docker-compose)" ]; then
+    echo 'Docker-Compose Installed'
+else
+  sudo curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  sudo chmod +x /usr/local/bin/docker-compose
+fi
+
+sudo systemctl start docker
+sudo systemctl enable docker
+docker-compose -f docker-compose.yml up -d

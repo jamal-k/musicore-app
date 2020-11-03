@@ -1,0 +1,21 @@
+ tools:
+   exceptions: https://sentry.io/musicore/musicore
+   logging: https://app.logdna.com/26ec65d75c/logs/view
+   ci: https://github.com/jamal-k/musicore-app/actions
+
+ services:
+   production: https://dashboard.heroku.com/apps/musicore
+
+ docs:
+   getting_started: https://github.com/jamal-k/musicore-app/blob/master/README.md
+      
+ commands:
+   bootstrap: script/bootstrap
+   database:
+     create: python3 app/flask_backend/db/setup.py
+   server: cd app/flask_backend && python3 app.py
+   client: cd app/front_end && npm start
+   test: 
+    server: cd app/flask_backend && python3 test.py
+    client: cd app/front_end && npm test
+   train_ml: cd app/flask_backend/nlp && python3 train.py

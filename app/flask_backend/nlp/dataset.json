@@ -1,0 +1,84 @@
+{
+  "entities": {},
+  "intents": {
+    "announcing_event_with_music": {
+      "utterances": [
+        {
+          "data": [
+            {
+              "text": "make sure you come to this club for music"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "artist with playing music here live"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "live music played here"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "there will be music here"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "there will be tunes and music"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "lots of music and tunes"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "get ready for music"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "acclaimed artists will play music"
+            }
+          ]
+        }
+      ]
+    },
+    "waiting_for_music": {
+      "utterances": [
+        {
+          "data": [
+            {
+              "text": "can't wait for music"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "i cant wait for the music"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "language": "en"
+}

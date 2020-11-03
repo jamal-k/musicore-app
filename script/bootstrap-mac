@@ -1,0 +1,98 @@
+#!/bin/sh
+
+DIR=$PWD
+
+
+install_postgres() {
+    brew cask list | grep postgres > /dev/null 2>&1
+    if [ $? -eq 1 ]; then
+      brew install postgresql
+      brew link --overwrite postgresql
+    else
+      echo "postgres already installed"
+    fi
+}
+
+install_homebrew() {
+    command -v brew > /dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        echo "Homebrew already installed"
+    else
+        echo "Installing Homebrew"
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    fi
+}
+
+install_node() {
+    command -v node > /dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        echo "node already installed"
+    else
+        brew install node
+    fi
+}
+
+install_python3() {
+    command -v python3 > /dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        echo "python3 already installed"
+    else
+        brew install python3
+    fi
+}
+
+install_pip3() {
+    command -v pip3 > /dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        echo "pip3 already installed"
+    else
+        curl https://bootstrap.pypa.io/get-pip.py | python3
+    fi
+}
+
+set_node() {
+    touch ~/.bash_profile
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+    source ~/.nvm/nvm.sh
+    nvm install 12.12.0
+    nvm use 12.12.0
+}
+
+if [ "$(uname)" == "Darwin" ]; then
+    install_homebrew
+    install_postgres
+    install_node
+    set_node
+    install_python3
+
+    # Front End
+    echo "==> Installing client dependencies.."
+    cd $DIR/app/front_end
+    export NODE_PATH=./src
+    npm install
+
+
+    # Backend
+    echo "==> Installing server dependencies.."
+    cd $DIR/app/flask_backend
+    install_pip3
+    pip3 install virtualenv
+    virtualenv myenv
+    source myenv/bin/activate
+    pip3 install -r requirements.txt
+    snips-nlu download en
+
+    echo "==> Readying database..."
+    initdb /usr/local/var/postgres -E utf8
+    pg_isready | grep 'no response' &> /dev/null
+    if [ $? == 0 ]; then
+        pg_ctl -D /usr/local/var/postgres start
+    fi
+    createuser postgres -s
+    createdb test_musicore
+
+
+else
+    echo "This script only works with Darwin UNIX systems."
+    exit 1
+fi

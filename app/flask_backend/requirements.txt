@@ -1,0 +1,14 @@
+flask
+flask_cors
+requests
+python-dotenv
+snips-nlu
+psycopg2
+sentry-sdk[flask]==0.14.1
+bcrypt
+pyjwt
+tensorflow==1.14.0
+pandas
+nltk
+codeclimate-test-reporter
+coverage==4.2
