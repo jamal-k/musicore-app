@@ -9,7 +9,7 @@ import {
   const MapWrapper = withScriptjs(
     withGoogleMap(props => (
         <GoogleMap
-        defaultCenter={{ lat: props.events[0].details.location[1], lng: props.events[0].details.location[0] }}
+        defaultCenter={{ lat: 43.651070, lng: -79.347015 }}
         defaultZoom={12}
         defaultOptions={{
             scrollwheel: false,
