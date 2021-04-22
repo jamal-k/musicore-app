@@ -134,7 +134,7 @@ def login():
             'email': email
         }
         token = (jwt.encode(payload, app.config['SECRET_KEY'], algorithm='HS256')).decode('utf-8')
-        resp = {'login': True, 'token': token}
+        resp = {login: True, 'token': token}
         return jsonify(resp)
 
     else:
