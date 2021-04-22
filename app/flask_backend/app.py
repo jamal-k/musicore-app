@@ -138,7 +138,7 @@ def login():
         return jsonify(resp)
 
     else:
-        resp = {'login': False}
+        resp = {login: False}
         return jsonify(resp), 403
 
 @app.route("/api/token/valid", methods=["POST"])
